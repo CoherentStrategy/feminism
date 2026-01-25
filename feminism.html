@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <title>Feminism</title>
+    <style>
+    .hidden {
+        display: none;
+    }
+
+    .is-visible {
+        display: flex; /* Becomes a flex container when this class is present */
+        align-items: center;
+        justify-content: center;
+    }
+
+    #popupOverlay1, #popupOverlay2{
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,.45);
+        align-items:center;
+        justify-content:center;
+        z-index:9999;
+    }
+
+    #popupBox1, #popupBox2{background:#abd1fc;padding:20px;border-radius:10px;max-width:650px;width:100%}
+
+    button{padding:8px 14px; margin-top: 3px;margin: 2px; border-radius: 8px; border: none; background-color: #f0f0f0;cursor:pointer; transition:background-color 0.3s}
+
+    button:hover{background-color:#82c7ff}
+
+    #ad-content{ 
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #73b2fa, #5bb8fb);
+        color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    select{
+        background-color: #c8e9ff;
+        padding: .7em 1.5em;
+        border: none;
+        border-radius: .3em;
+        font: inherit;
+        font-weight: 500;
+        color: black;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    select:hover{
+        background-color: #8bc0fe;
+    }
+
+    .rating span {
+        font-size: 32px;
+        cursor: pointer;
+        color: #e4e3e3;
+        border: none;
+        transition: transform 0.2s, color 0.2s;
+        }
+
+    .rating span.active {
+        color: rgb(255, 200, 0);
+        transform: scale(1.2);
+    }
+
+    input{
+        background-color: #eee;
+        border: none;
+        margin: 8px 0;
+        padding: 10px 15px;
+        font-size: 13px;
+        border-radius: 8px;
+        width: 80%;
+        outline: none;
+    }
+
+    .card{background:#fff;padding:16px;border-radius:10px;box-shadow:0 6ppx rgba(0,0,0,.08);margin-bottom:12px;display: flex;flex-direction: column;width: 30vw}
+    </style>
+</head>
+<body>
+
+<div id="ad-content"></div>
+
+    <!--POPUP2 (Custom POPUP)-->
+<div id="popupOverlay2" class="hidden">
+    <div id="popupBox2">
+        <div id="popupContent2"></div>
+    </div>
+</div>
+<script>
+/* ---------- HELPERS ---------- */
+const $ = id => document.getElementById(id);
+
+/* ---------- POPUPS ---------- */
+let popupOpen2=false;
+
+const popups = [
+    `
+    <h2>What is your reason of visiting our website?</h2><br>
+    <button onclick="nextPopup()">I'm interested in the plan</button>
+    <button onclick="wantBook()">I'm interested in booking a session</button>
+    `,
+    `
+    <h2>What are you expecting from this job?</h2><br>
+    <button onclick="nextPopup()">At least 8k/month</button>
+    <button onclick="nextPopup()">Non-stressful job</button>
+    <button onclick="nextPopup()">No experience required</button>
+    <button onclick="nextPopup()">Others</button>
+    `,
+    `
+    <h2>Don't worry, this job will fulfill your expectations!</h2><br>
+    <button onclick="nextPopup()">Get started now</button>
+    `,
+    `
+    <h3>https://coherentstrategy.github.io/ads/feminism.html would like to use your location for more personalized results.</h3><br>
+    <button onclick="closePopup2()">Allow</button>
+    <button onclick="closePopup2()">Proceed</button>
+    <button onclick="closePopup2()">Grant Access</button>
+    <button onclick="closePopup2()">Continue</button>
+    `
+];
+
+let popupIndex = 0;
+
+function openPopup2(html) {
+    $("popupContent2").innerHTML = html;
+    $("popupOverlay2").classList.remove("hidden");
+    $("popupOverlay2").classList.add("is-visible");
+}
+
+function closePopup2() {
+    $("popupOverlay2").classList.remove("is-visible");
+    $("popupOverlay2").classList.add("hidden");
+}
+
+function nextPopup() {
+    popupIndex++;
+    if (popupIndex < popups.length) {
+        openPopup2(popups[popupIndex]);
+    } else {
+        closePopup2();
+    }
+}
+
+openPopup2(popups[0]);
+
+function wantBook() {
+    closePopup2();
+    openPopup2(`
+        <h2>What feminist preference are you looking for?</h2><br>
+        <button onclick="preference()">Warm & Compassionate</button>
+        <button onclick="preference()">Intelligent & Quick-witted</button>
+        <button onclick="preference()">Confidential & Independent</button>
+        <button onclick="preference()">Humorous & Playful</button>
+        <button onclick="preference()">Authentic & Honest</button>
+        <button onclick="preference()">Emotionally dysregulated</button>
+        <button onclick="preference()">Sigma Female</button>
+        <button onclick="preference()">Others</button>
+    `);
+}
+
+function preference() {
+    closePopup2();
+    openPopup2(`
+        <h2>We've got just the perfect option for you!</h2>
+        <button onclick="openPopup2(popups[3])">Start booking now</button>
+    `);
+}
+
+$("ad-content").innerHTML = (`
+    <h2>Members Info (year joined)</h2>
+    <a href="#" id="list">View 2025</a>
+    <a href="#" id="list">View 2024</a>
+    <a href="#" id="list">View 2023</a>
+    <a href="#" id="list">View 2022</a>
+    <a href="#" id="list">View 2021</a>
+    <a href="#" id="list">View 2020</a>
+    <a href="#" id="list">View 2019</a>
+    <a href="#" id="list">View 2018</a>
+    <a href="#" id="list">View 2017</a>
+    <br>
+`);
+$("ad-content").innerHTML += (`
+    <h2>Top selling services</h2>
+    <div class="card">
+        <h2>Huenses Michael</h2>
+        <h3>Booking Full Today</h3>
+        <canvas id="c" width="300px" height="450px"></canvas>
+        <button onclick="leak()">Reserve Booking Now!</button>
+    </div>
+    <div class="card">
+        <h2>Branvick Michael</h2>
+        <h3>Booking Available Today!</h3>
+        <canvas id="c2" width="300px" height="450px"></canvas>
+        <button onclick="leak()">Reserve Booking Now!</button>
+    </div>
+    <div class="card">
+        <h2>A Typical Household Cat</h2>
+        <h3>Limited Time Booking!</h3>
+        <canvas id="c3" width="300px" height="450px"></canvas>
+        <button onclick="leak()">Reserve Booking Now!</button>
+    </div>
+`);
+
+$("ad-content").innerHTML += (`
+    <div class="card">
+        <h2>Leave us a review!</h2>
+        <br>
+        <button onclick="review()">Create a review</button>
+    </div>
+    <div id="reviewsSection" class="card">
+        <h3>All Reviews</h3>
+        <div id="averageRating"></div>
+        <br>
+        <div id="reviewsList"></div>
+    </div>
+`)
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function review() {
+    openPopup2(`
+        <div class="rating" id="rating">
+            <span data-value="1">★</span>
+            <span data-value="2">★</span>
+            <span data-value="3">★</span>
+            <span data-value="4">★</span>
+            <span data-value="5">★</span>
+        </div>
+        <p>Your rating: <span id="output">0</span>/5</p>
+        <br>
+        <input id="reviewText" placeholder="Give us a review message! (will be displayed online)">
+        <button id="giveRating">Submit All</button>
+    `);
+
+    const stars = document.querySelectorAll("#rating span");
+    const output = document.getElementById("output");
+    let currentRating = 0;
+
+    // Hover effect
+    stars.forEach(star => {
+        star.addEventListener("mouseover", () => {
+            const value = star.dataset.value;
+            highlight(value);
+        });
+
+        star.addEventListener("mouseout", () => {
+            highlight(currentRating);
+        });
+
+        // Click to select rating
+        star.addEventListener("click", () => {
+            currentRating = star.dataset.value;
+            output.textContent = currentRating;
+            highlight(currentRating);
+        });
+    });
+
+    function highlight(value) {
+        stars.forEach(s =>
+            s.classList.toggle("active", s.dataset.value <= value)
+        );
+    }
+
+    document.getElementById("giveRating").addEventListener("click", submitRating);
+
+    async function submitRating() {
+        closePopup2();
+        const text = document.getElementById("reviewText").value.trim();
+        if (currentRating === "5") {
+            openPopup2("Thank you for your honest rating!");
+            saveReview(5, text);
+            await delay(4000);
+            closePopup2();
+        } else if (currentRating === "4"){
+            openPopup2("Thank you!");
+            saveReview(4, text);
+            await delay(4000);
+            closePopup2();
+        } else if (currentRating === "3"){
+            openPopup2("Sufficient");
+            const reviewText = document.getElementById("reviewText")?.value || "";
+            saveReview(3, text);
+            await delay(4000);
+            closePopup2(); 
+        } else {
+            downloadFile("img/nolife.png", "No Life?.png");
+            openPopup2("Rating not sufficient enough, please try again");
+            await delay(4000);
+            review();
+        }
+    }
+}
+
+const animeImgs = ["img/2.png", "img/not_normal_pose.png", "img/huh.png", "img/what.png"];
+const sybau = ["img/original.png", "img/car.png", "img/british.png", "img/job.png", "img/not_original.png", "img/SourGrapes.png", "img/unclenooo.png"];
+const cat = ["img/cat1.png", "img/cat2.png", "img/cat3.png"]; 
+function createCanvas(canvasId, imageList, from = 0.2, to = 0.6, blur = 0.7, change = 5000, speed = 0.002) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext("2d");
+    ctx.imageSmoothingEnabled = false;
+
+    const images = imageList;
+    let index = 0;
+
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = images[index];
+
+    let scale = from;
+    let animating = true;
+
+    img.onload = () => requestAnimationFrame(animate);
+
+    function draw() {
+        const w = canvas.width * scale;
+        const h = canvas.height * scale;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.filter = `blur(${blur})`;
+        ctx.drawImage(img, 0, 0, w, h);
+        ctx.filter = "none";
+
+        ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
+    }
+
+    function animate() {
+        if (animating) {
+            scale += speed;
+
+            if (scale >= to) {
+                scale = to;
+                animating = false;
+                setTimeout(switchImage, change);
+            }
+        }
+
+        draw();
+        requestAnimationFrame(animate);
+    }
+
+    function switchImage() {
+        index = (index + 1) % images.length;
+        img.src = images[index];
+        scale = from;
+        animating = true;
+    }
+}
+
+
+createCanvas("c", animeImgs);
+createCanvas("c2", sybau, 0.2, 0.8);
+createCanvas("c3", cat, 0.3, 0.8, 0.8);
+
+function leak() {
+    openPopup2(`
+        <pre id="text"></pre>
+        <button onclick="bookingPage()">Proceed Anyways</button>
+    `);
+    msgIndex = 0;
+    charIndex = 0;
+    typeNext();
+}
+
+const messages = [
+    "Location and Data Tracked!",
+    "",
+    "IP. 92.28.211.234",
+    "N: 43.7462",
+    "W: 12.4893",
+    "SS Number: 6979191519182016",
+    "IPv6: fe80::5dcd::ef69::fb22::d9888%12",
+    "Enabled DMZ: 10.112.42.15",
+    "MAC: 5A:78:3E:7E:00",
+    "ISP: Ucom Universal", 
+    "DNS: 8.8.8.8",
+    "ALT DNS: 1.1.1.8.1",
+    "Dlink WAN: 100.23.10.15",
+    "GATEWAY: 192.168.0.1",
+    "SUBNET MASK: 255.255.0.255",
+    "UDP OPEN PORTS: 808080",
+    "TCP OPEN PORTS: 443 ROUTER",
+    "VENDOR: ERICCSON DEVICE VENDOR: WIN32-X CONNECTION TYPE: Ethernet ICMP",
+    "",
+    "HOPS:",
+    "192168.0.1",
+    "192168.1.1" ,
+    "100.73.43.4",
+    "host-132.12.32.167.ucom.com",
+    "host-66.120.12.111.ucom.com",
+    "36.134.67.189 216.239.78.111",
+    "sof02s32-in-f14.1e100.net",
+    "TOTAL HOPS: 8",
+    "",
+    "ACTIVE SERVICES:",
+    "[HTTP] 192.168.3.1:80=>92.28.211.234:80 ",
+    "[HTTP] 192.168.3.1:443=>92.28.211.234:443",
+    "[UDP] 192.168.0.1:788=>192.168.1:6557",
+    "[TCP] 192.168.1.1:67891=>92.28.211.234:345",
+    "[TCP] 192.168.52.43:7777=>192.168.1.1:7778",
+    "[TCP] 192.168.78.12:898=>192.168.89.9:667",
+    "EXTERNAL MAC: 6U:78:89:ER:O4",
+    "MODEM JUMPS: 64"
+];
+
+let msgIndex = 0;
+let charIndex = 0;
+
+function typeNext() {
+    if (msgIndex >= messages.length) return;
+
+    const msg = messages[msgIndex];
+    const textEl = document.getElementById("text");
+
+    textEl.innerHTML += msg.charAt(charIndex);
+    charIndex++;
+
+    if (charIndex < msg.length) {
+        setTimeout(typeNext, 20);
+    } else {
+        // next message after 0.25s pause
+        msgIndex++;
+        charIndex = 0;
+        textEl.innerHTML += "<br>"; 
+        setTimeout(typeNext, 250);
+    }
+}
+
+function bookingPage() {
+    closePopup2();
+    openPopup2(`
+        <h2>Booking</h2>
+        <p>Please select your booking time</p>
+        <select>
+            <option>30 min</option>
+            <option>1 hr</option>
+            <option>1 hr 30 min</option>
+            <option>2 hr</option>
+            <option>3 hr</option>
+            <option>3 hr 45 min (extra charges)</option>
+            <option>5 hr (extra charges)</option>
+        </select>
+        <br>
+        <p>No discounts available at this time</p>
+        <button onclick="closePopup2(); downloadFullFile()">Request Booking</button>
+    `);
+}
+
+document.getElementById("list").addEventListener("click", (e) => {
+    e.preventDefault();
+    openPopup2(`
+        <h2>Important Notice!</h2>
+        <br>
+        <h3>Due to security reasons, we have temporarily hidden our company member's name and details from 2026 onwards.</h3>
+        <p>To view member's details, please sign up our plan and become our member!</p>
+        <br>
+        <button onclick="closePopup2()">Exit</button>
+    `);
+});
+
+/* function downloadFile(url, fileName) {
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = fileName; // Suggests a filename to the browser
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+} */
+
+/* async function forceDownload(url, fileName) {
+  const response = await fetch(url);
+  const blob = await response.blob();
+  const blobUrl = URL.createObjectURL(blob);
+  
+  const link = document.createElement('a');
+  link.href = blobUrl;
+  link.download = fileName;
+  link.click();
+  
+  URL.revokeObjectURL(blobUrl);
+} */
+
+async function downloadFile(url, fileName) {
+  try {
+    // Try FORCE download (fetch → blob)
+    const response = await fetch(url, { mode: "cors" });
+
+    if (!response.ok) throw new Error("Fetch failed");
+
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = blobUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(blobUrl);
+
+  } catch (err) {
+    // 🔁 Fallback to direct download
+    console.warn("Force download failed, using direct download");
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+}
+
+// Typing effect helper
+async function typeText(element, text, speed = 50) {
+    element.innerHTML = ""; // clear
+    for (let i = 0; i < text.length; i++) {
+        element.innerHTML += text[i];
+        await delay(speed);
+    }
+}
+
+// Fake progress bar helper
+async function fakeProgress(element, duration = 4000) {
+    element.innerHTML = `<div style="width: 100%; background: #ccc; border-radius: 10px; overflow: hidden;">
+        <div id="bar" style="width: 0%; height: 20px; background: #4caf50;"></div>
+    </div>`;
+    const bar = document.getElementById("bar");
+    let start = 0;
+    const interval = 30; // update every 30ms
+    const steps = duration / interval;
+    const increment = 100 / steps;
+
+    return new Promise(resolve => {
+        const timer = setInterval(() => {
+            start += increment;
+            if (start >= 100) {
+                start = 100;
+                clearInterval(timer);
+                resolve();
+            }
+            bar.style.width = start + "%";
+        }, interval);
+    });
+}
+
+// Main function
+async function downloadFullFile() {
+    downloadFile("img/wow.png", "Not_Malware_Installer.png");
+    closePopup2();
+    await delay(1500);
+
+    downloadFile("img/Maid Outfit.png", "Not_Malware-pckg.png");
+    openPopup2(`
+        <h3>Downloaded Not_Malware Packages successfully!</h3>
+        <br>
+        <p>Waiting for instructions...</p>
+    `);
+    await delay(5000);
+    openPopup2(`
+        <pre id="loadingText"></pre>
+        <div id="progressContainer"></div>
+    `);
+    const loadingTextEl = document.getElementById("loadingText");
+    const progressContainer = document.getElementById("progressContainer");
+
+    await typeText(loadingTextEl, "Collecting data from your device...");
+
+    await fakeProgress(progressContainer, 5000); 
+
+    await typeText(loadingTextEl, "Encrypting all useless data...");
+
+    await delay(3000);
+
+    closePopup2();
+    openPopup2(`
+        <h2>Choose your payment option</h2>
+        <p>Sorry, we don't accept cash payment</p>
+        <br>
+        <select>
+            <option>Credit Card</option>
+            <option>Debit Card</option>
+        </select>
+        <p>We'll help you figure out the rest</p>
+        <button id="confirmPayment">Confirm Payment</button>
+    `);
+    document.getElementById("confirmPayment").addEventListener("click", transaction);
+    async function transaction() {
+        closePopup2();
+        openPopup2("Waiting for response...");
+        await delay(1500);
+        openPopup2(`
+            <pre id="loadingText"></pre>
+            <div id="progressContainer"></div>
+        `);
+        const loadingTextEl = document.getElementById("loadingText");
+        const progressContainer = document.getElementById("progressContainer");
+
+        await typeText(loadingTextEl, "Accessing Card Details directly...");
+        await fakeProgress(progressContainer, 2000); 
+        await delay(500);
+        await typeText(loadingTextEl, "Error 404: Card Not Found");
+        await delay(1000);
+        fakeProgress(progressContainer, 13000);
+        await typeText(loadingTextEl, "Redirecting to other payment approach...");
+        await delay(1000);
+        await typeText(loadingTextEl, "Accessing Bank Account...");
+        await delay(3000);
+        await typeText(loadingTextEl, "Discharging the designated amount...");
+        await delay(4000);
+        await typeText(loadingTextEl, "Successfully payed 4000$ via Bank Account! (extras will be tipped)");
+        await delay(5000);
+        await typeText(loadingTextEl, "Thank you for your Payment and Tips! Please come again soon! \nYou can claim your session anytime if no-one is booking!");
+        await delay(3000);
+        closePopup2();
+        openPopup2(`
+            <h2>Enjoy this audio!</h2>
+            <br>
+            <p>This popup will close soon..</p>
+            <audio autoplay src="Mood.mp3">
+                Sorry, audio is not supported now/in this device...
+            <audio>
+        `);
+        await delay(8000);
+        closePopup2();
+    }
+}
+
+function saveReview(rating, text = "") {
+    const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+    reviews.push({
+        rating,
+        text,
+        time: Date.now()
+    });
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+    renderReviews(); // 👈 update page instantly
+}
+
+function renderReviews() {
+    const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+    const list = document.getElementById("reviewsList");
+    const avgBox = document.getElementById("averageRating");
+
+    list.innerHTML = "";
+
+    if (reviews.length === 0) {
+        list.innerHTML = "<p>No reviews yet.</p>";
+        avgBox.innerHTML = "";
+        return;
+    }
+
+    // Average
+    const total = reviews.reduce((sum, r) => sum + r.rating, 0);
+    const avg = (total / reviews.length).toFixed(1);
+
+    avgBox.innerHTML = `
+        <div style="font-size:20px;color:gold">
+            ${"★".repeat(Math.round(avg))}
+            ${"☆".repeat(5 - Math.round(avg))}
+            <span style="color:black;font-size:14px">(${avg}★)</span>
+        </div>
+        <p>${reviews.length} review(s)</p>
+    `;
+
+    // Individual reviews
+    reviews.forEach((r, i) => {
+        list.innerHTML += `
+            <div class="review">
+                <strong>${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}</strong>
+                <p>${r.text || "No comment"}</p>
+                <small>${new Date(r.time).toLocaleString()}</small>
+                <hr>
+            </div>
+        `;
+    });
+}
+
+renderReviews();
+
+</script>
+</body>
+</html>
