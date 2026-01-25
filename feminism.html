@@ -208,6 +208,11 @@ $("ad-content").innerHTML += (`
         <canvas id="c3" width="300px" height="450px"></canvas>
         <button onclick="leak()">Reserve Booking Now!</button>
     </div>
+    <div class="card">
+        <h2>Shinobu Kochō</h2>
+        <h3>Booking Unavailable Today</h3>
+        <canvas id="c4" width="300px" height="450px"></canvas>
+        <button onclick="leak()">Reserve Booking Now!</button>
 `);
 
 $("ad-content").innerHTML += (`
@@ -303,7 +308,8 @@ function review() {
 
 const animeImgs = ["img/2.png", "img/not_normal_pose.png", "img/huh.png", "img/what.png"];
 const sybau = ["img/original.png", "img/car.png", "img/british.png", "img/job.png", "img/not_original.png", "img/SourGrapes.png", "img/unclenooo.png"];
-const cat = ["img/cat1.png", "img/cat2.png", "img/cat3.png"]; 
+const cat = ["img/cat1.png", "img/cat2.png", "img/cat3.png"];
+const shinobu = ["full-pose.png", "face.png", "logo.png", "idk.png"];
 function createCanvas(canvasId, imageList, from = 0.2, to = 0.6, blur = 0.7, change = 5000, speed = 0.002) {
     const canvas = document.getElementById(canvasId);
     const ctx = canvas.getContext("2d");
@@ -361,6 +367,7 @@ function createCanvas(canvasId, imageList, from = 0.2, to = 0.6, blur = 0.7, cha
 createCanvas("c", animeImgs);
 createCanvas("c2", sybau, 0.2, 0.8);
 createCanvas("c3", cat, 0.3, 0.8, 0.8);
+createCanvas("c4", shinobu, 0.2, 0.8);
 
 function leak() {
     openPopup2(`
