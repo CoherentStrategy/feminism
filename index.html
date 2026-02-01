@@ -82,7 +82,15 @@
         outline: none;
     }
 
-    .card{background:#fff;padding:16px;border-radius:10px;box-shadow:0 6ppx rgba(0,0,0,.08);margin-bottom:12px;display: flex;flex-direction: column;width: 30vw}
+    .card{background:#fff;padding:16px;border-radius:10px;box-shadow:0 6px rgba(0,0,0,.08);margin-bottom:12px;display: flex;flex-direction: column;width: 90vw}
+    
+    @media (min-width: 768px){
+        .card{width: 45vw}
+    }
+
+    @media (min-width: 1024px){
+        .card{width: 30vw}
+    }
     </style>
 </head>
 <body>
