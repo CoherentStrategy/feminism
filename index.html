@@ -192,15 +192,7 @@ function preference() {
 
 $("ad-content").innerHTML = (`
     <h2>Members Info (year joined)</h2>
-    <a href="#" id="list">View 2025</a>
-    <a href="#" id="list">View 2024</a>
-    <a href="#" id="list">View 2023</a>
-    <a href="#" id="list">View 2022</a>
-    <a href="#" id="list">View 2021</a>
-    <a href="#" id="list">View 2020</a>
-    <a href="#" id="list">View 2019</a>
-    <a href="#" id="list">View 2018</a>
-    <a href="#" id="list">View 2017</a>
+    <a href="#" id="list">View All</a>
     <br>
 `);
 $("ad-content").innerHTML += (`
@@ -260,6 +252,7 @@ function review() {
         <br>
         <input id="reviewText" placeholder="Give us a review message! (will be displayed online)">
         <button id="giveRating">Submit All</button>
+        <button onclick="closePopup()">Exit Review</button>
     `);
 
     const stars = document.querySelectorAll("#rating span");
