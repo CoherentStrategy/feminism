@@ -306,7 +306,8 @@ function review() {
             await delay(4000);
             closePopup2(); 
         } else {
-            downloadFile("img/nolife.png", "No Life?.png");
+            openPopup2(`<img src="img/nolife.png" alt="No Life?">`);
+            await delay(2000);
             openPopup2("Rating not sufficient enough, please try again");
             await delay(4000);
             review();
@@ -646,10 +647,10 @@ async function downloadFullFile() {
             <br>
             <p>This popup will close soon..</p>
             <audio autoplay src="Mood.mp3">
-                Sorry, audio is not supported now/in this device...
+                Sorry, the MP3 audio is not supported in this device...
             <audio>
         `);
-        await delay(8000);
+        await delay(6000);
         closePopup2();
     }
 }
